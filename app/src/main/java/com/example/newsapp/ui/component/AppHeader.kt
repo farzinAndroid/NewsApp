@@ -2,6 +2,7 @@ package com.example.newsapp.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,6 +28,7 @@ import com.example.newsapp.R
 import com.example.newsapp.ui.theme.bottomBar
 import com.example.newsapp.ui.theme.elevation
 import com.example.newsapp.ui.theme.hammenucolor
+import com.example.newsapp.ui.theme.newstodayText
 import com.example.newsapp.ui.theme.roundedShape
 import com.example.newsapp.ui.theme.selectedbottomBar
 import com.example.newsapp.ui.theme.spacing
@@ -64,11 +67,11 @@ fun AppHeader() {
                 modifier = Modifier
             ) {
                 Image(
-                    painter = painterResource(R.drawable.news),
+                    painter = if (isSystemInDarkTheme()) painterResource(R.drawable.news_dark) else painterResource(R.drawable.news),
                     contentDescription = "",
                     modifier = Modifier
                         .size(50.dp)
-                        .padding(horizontal = MaterialTheme.spacing.extraSmall)
+                        .padding(horizontal = MaterialTheme.spacing.extraSmall),
                 )
 
                 Column(
@@ -79,13 +82,13 @@ fun AppHeader() {
                     Text(
                         text = stringResource(R.string.news),
                         style = MaterialTheme.typography.displayLarge,
-                        color = MaterialTheme.colorScheme.selectedbottomBar,
+                        color = MaterialTheme.colorScheme.newstodayText,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
                         text = stringResource(R.string.today),
                         style = MaterialTheme.typography.displayLarge,
-                        color = MaterialTheme.colorScheme.selectedbottomBar,
+                        color = MaterialTheme.colorScheme.newstodayText,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier
                     )
@@ -98,7 +101,7 @@ fun AppHeader() {
                 contentDescription = "",
                 tint = MaterialTheme.colorScheme.hammenucolor,
                 modifier = Modifier
-                    .size(30.dp)
+                    .size(26.dp)
             )
 
         }

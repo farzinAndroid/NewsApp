@@ -31,6 +31,14 @@ val ColorScheme.hammenucolor: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color(0xFFFFFEFE) else Color(0xFF000000)
 
+val ColorScheme.newstodayText: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Color(0xFFFFFFFF) else Color(0xFFE90000)
+
+val ColorScheme.darktext: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Color(0xFFDDDDDD) else Color(0xFF1F1F1F)
+
 
 
 

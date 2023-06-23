@@ -5,4 +5,10 @@
     <string name="search">Search</string>
     <string name="news">News</string>
     <string name="today">Today</string>
+    <string name="quick_reads">Quick Reads</string>
+    <string name="top_news">Top News</string>
+    <string name="see_all">See All</string>
+    <string name="today_news">Today\'s News</string>
+    <string name="dot_bullet">•</string>
+    <string name="unknown">Unknown</string>
 </resources>

@@ -33,7 +33,9 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         bottomBar = {
                             BottomBar(navController, onItemClick = {
-                                navController.navigate(it.route)
+                                navController.navigate(it.route){
+
+                                }
                             })
                         },
                     ) {
