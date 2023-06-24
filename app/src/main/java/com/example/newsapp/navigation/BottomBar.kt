@@ -56,55 +56,59 @@ fun BottomBar(
     )
 
     val backStackEntry = navHostController.currentBackStackEntryAsState()
+    val showBottomBar = backStackEntry.value?.destination?.route in bottomNavList.map { it.route }
 
-    BottomAppBar(
-        containerColor = MaterialTheme.colorScheme.bottomBar,
-        modifier = Modifier
-            .height(60.dp)
-            .clip(MaterialTheme.roundedShape.small)
+    if (showBottomBar){
+        BottomAppBar(
+            containerColor = MaterialTheme.colorScheme.bottomBar,
+            modifier = Modifier
+                .height(60.dp)
+                .clip(MaterialTheme.roundedShape.small)
             ,
-        tonalElevation = MaterialTheme.elevation.extraSmall,
-    ) {
+            tonalElevation = MaterialTheme.elevation.extraSmall,
+        ) {
 
-        bottomNavList.forEachIndexed { index, item ->
+            bottomNavList.forEachIndexed { index, item ->
 
-            val selected = item.route == backStackEntry.value?.destination?.route
+                val selected = item.route == backStackEntry.value?.destination?.route
 
-            BottomNavigationItem(
-                selected = selected,
-                onClick = {
-                    onItemClick(item)
-                },
-                selectedContentColor = MaterialTheme.colorScheme.selectedbottomBar,
-                unselectedContentColor = MaterialTheme.colorScheme.unselectedbottomBar,
-                icon = {
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
+                BottomNavigationItem(
+                    selected = selected,
+                    onClick = {
+                        onItemClick(item)
+                    },
+                    selectedContentColor = MaterialTheme.colorScheme.selectedbottomBar,
+                    unselectedContentColor = MaterialTheme.colorScheme.unselectedbottomBar,
+                    icon = {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
 
-                        Icon(
-                            painter = item.icon,
-                            contentDescription = item.name,
-                            modifier = Modifier
-                                .size(24.dp)
+                            Icon(
+                                painter = item.icon,
+                                contentDescription = item.name,
+                                modifier = Modifier
+                                    .size(24.dp)
 
-                        )
+                            )
 
-                        Text(
-                            text = item.name,
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = if (selected) MaterialTheme.colorScheme.selectedbottomBar else MaterialTheme.colorScheme.unselectedbottomBar,
-                            modifier = Modifier
-                                .padding(top = MaterialTheme.spacing.extraSmall)
-                        )
+                            Text(
+                                text = item.name,
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = if (selected) MaterialTheme.colorScheme.selectedbottomBar else MaterialTheme.colorScheme.unselectedbottomBar,
+                                modifier = Modifier
+                                    .padding(top = MaterialTheme.spacing.extraSmall)
+                            )
 
-                    }
-                },
-            )
+                        }
+                    },
+                )
+
+            }
 
         }
-
     }
+
 
 }

@@ -39,6 +39,10 @@ val ColorScheme.darktext: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color(0xFFDDDDDD) else Color(0xFF1F1F1F)
 
+val ColorScheme.splashBG: Color
+    @Composable
+    get() = if (isSystemInDarkTheme()) Color(0xFF2E2E2E) else Color(0xFFFFFFFF)
+
 
 
 

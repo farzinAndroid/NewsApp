@@ -1,5 +1,6 @@
 package com.example.newsapp.ui.component
 
+import androidx.compose.foundation.DefaultMarqueeIterations
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
@@ -127,7 +128,7 @@ fun NewsItem(
                             .width(40.dp)
                             .basicMarquee(
                                 animationMode = MarqueeAnimationMode.Immediately,
-                                iterations = 3,
+                                iterations = Int.MAX_VALUE,
                                 spacing = MarqueeSpacing(10.dp),
                                 delayMillis = 0,
                                 velocity = 20.dp

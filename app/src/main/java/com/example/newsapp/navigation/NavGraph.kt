@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.example.newsapp.ui.screens.category.CategoryScreen
 import com.example.newsapp.ui.screens.home.HomeScreen
 import com.example.newsapp.ui.screens.search.SearchScreen
+import com.example.newsapp.ui.screens.splash.SplashScreen
 
 @Composable
 fun NavGraph(navController: NavHostController) {
@@ -14,7 +15,7 @@ fun NavGraph(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination =  Screens.HomeScreen.route
+        startDestination =  Screens.SplashScreen.route
     ){
 
         composable(Screens.HomeScreen.route){
@@ -27,6 +28,10 @@ fun NavGraph(navController: NavHostController) {
 
         composable(Screens.SearchScreen.route){
             SearchScreen()
+        }
+
+        composable(Screens.SplashScreen.route){
+            SplashScreen(navController)
         }
 
     }

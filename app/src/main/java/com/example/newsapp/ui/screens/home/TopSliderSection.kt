@@ -1,6 +1,7 @@
 package com.example.newsapp.ui.screens.home
 
 import android.util.Log
+import androidx.compose.foundation.DefaultMarqueeIterations
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
@@ -175,7 +176,7 @@ fun TopSliderSection(
                                 .padding(bottom = MaterialTheme.spacing.semiLarge)
                                 .basicMarquee(
                                     animationMode = MarqueeAnimationMode.Immediately,
-                                    iterations = 3,
+                                    iterations = Int.MAX_VALUE,
                                     spacing = MarqueeSpacing(10.dp),
                                     delayMillis = 0,
                                     velocity = 50.dp

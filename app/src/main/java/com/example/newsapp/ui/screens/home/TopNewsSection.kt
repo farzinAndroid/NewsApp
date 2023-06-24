@@ -36,8 +36,8 @@ import com.google.accompanist.pager.rememberPagerState
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TopNewsSection(
+    source:String,
     homeViewModel: HomeViewModel = hiltViewModel(),
-    source:String = "bbc-news"
 ) {
 
     LaunchedEffect(true){

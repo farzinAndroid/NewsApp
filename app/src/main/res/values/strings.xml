@@ -3,8 +3,9 @@
     <string name="home">Home</string>
     <string name="category">Category</string>
     <string name="search">Search</string>
+    <string name="breaking">Breaking</string>
     <string name="news">News</string>
-    <string name="today">Today</string>
+    <string name="news_today">News Today</string>
     <string name="quick_reads">Quick Reads</string>
     <string name="top_news">Top News</string>
     <string name="see_all">See All</string>

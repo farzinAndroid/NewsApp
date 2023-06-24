@@ -1,7 +1,6 @@
 package com.example.newsapp.ui.component
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,7 +18,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,7 +28,6 @@ import com.example.newsapp.ui.theme.elevation
 import com.example.newsapp.ui.theme.hammenucolor
 import com.example.newsapp.ui.theme.newstodayText
 import com.example.newsapp.ui.theme.roundedShape
-import com.example.newsapp.ui.theme.selectedbottomBar
 import com.example.newsapp.ui.theme.spacing
 
 @Composable
@@ -76,17 +73,19 @@ fun AppHeader() {
 
                 Column(
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.height(70.dp)
+                    horizontalAlignment = Alignment.Start,
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.spacing.small)
+                        .height(70.dp)
                 ) {
                     Text(
-                        text = stringResource(R.string.news),
+                        text = stringResource(R.string.breaking),
                         style = MaterialTheme.typography.displayLarge,
                         color = MaterialTheme.colorScheme.newstodayText,
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = stringResource(R.string.today),
+                        text = stringResource(R.string.news),
                         style = MaterialTheme.typography.displayLarge,
                         color = MaterialTheme.colorScheme.newstodayText,
                         fontWeight = FontWeight.Bold,
