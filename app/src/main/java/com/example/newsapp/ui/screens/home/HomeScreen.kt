@@ -23,7 +23,7 @@ fun Home(navController: NavHostController, homeViewModel: HomeViewModel = hiltVi
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = 60.dp)
+            .padding(bottom = 64.dp)
     ) {
 
         item { AppHeader() }

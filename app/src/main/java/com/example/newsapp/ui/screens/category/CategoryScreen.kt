@@ -20,7 +20,7 @@ fun Category(navController:NavController) {
 
     LazyColumn(
         modifier = Modifier
-            .padding(bottom = 60.dp)
+            .padding(bottom = 64.dp)
     ){
 
         item { AppHeader() }

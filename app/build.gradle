@@ -104,6 +104,10 @@ dependencies {
     //pager
     implementation "com.google.accompanist:accompanist-pager:0.29.0-alpha"
     implementation "com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha"
+
+
+    //animated NavBar
+    implementation("com.exyte:animated-navigation-bar:1.0.0")
 }
 
 // Allow references to generated code

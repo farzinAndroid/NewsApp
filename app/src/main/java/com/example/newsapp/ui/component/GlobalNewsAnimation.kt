@@ -16,7 +16,7 @@ import com.example.newsapp.R
 @Composable
 fun GlobalNewsAnimation() {
 
-    val globalComposition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.global_news))
+    val globalComposition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.news_loading))
 
 
     Box(
