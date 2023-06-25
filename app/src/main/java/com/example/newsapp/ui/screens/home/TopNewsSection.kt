@@ -21,11 +21,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.newsapp.R
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
+import com.example.newsapp.ui.component.PreLoadAnimation
 import com.example.newsapp.ui.theme.Typography
 import com.example.newsapp.ui.theme.darktext
 import com.example.newsapp.ui.theme.spacing
@@ -76,8 +76,7 @@ fun TopNewsSection(
     }
 
     if (loading){
-        Text(text = "Loading", modifier = Modifier
-            .padding(100.dp))
+        PreLoadAnimation()
     }else{
         Column(
             modifier = Modifier

@@ -23,11 +23,11 @@ fun NavGraph(navController: NavHostController) {
         }
 
         composable(Screens.CategoryScreen.route){
-            CategoryScreen()
+            CategoryScreen(navController)
         }
 
         composable(Screens.SearchScreen.route){
-            SearchScreen()
+            SearchScreen(navController)
         }
 
         composable(Screens.SplashScreen.route){

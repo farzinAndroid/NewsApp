@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +29,7 @@ import com.example.newsapp.R
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
 import com.example.newsapp.ui.component.NewsItem
+import com.example.newsapp.ui.component.PreLoadAnimation
 import com.example.newsapp.ui.theme.Typography
 import com.example.newsapp.ui.theme.darktext
 import com.example.newsapp.ui.theme.spacing
@@ -71,43 +71,48 @@ fun TodaysNewsSection(
         }
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        Row(
+    if (loading){
+        PreLoadAnimation()
+    }else{
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = MaterialTheme.spacing.medium)
-                .padding(bottom = MaterialTheme.spacing.extraSmall),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ){
-            Text(
-                text = stringResource(R.string.today_news),
-                style = Typography.displayLarge,
-                color = MaterialTheme.colorScheme.darktext,
-                fontStyle = FontStyle.Italic,
-                fontWeight = FontWeight.SemiBold,
+                .fillMaxSize()
+        ) {
+            Row(
                 modifier = Modifier
-                    .padding(start = MaterialTheme.spacing.medium)
-                    .padding(top = MaterialTheme.spacing.biggerMedium)
-                    .padding(bottom = MaterialTheme.spacing.medium)
-            )
+                    .fillMaxWidth()
+                    .padding(top = MaterialTheme.spacing.medium)
+                    .padding(bottom = MaterialTheme.spacing.extraSmall),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ){
+                Text(
+                    text = stringResource(R.string.today_news),
+                    style = Typography.displayLarge,
+                    color = MaterialTheme.colorScheme.darktext,
+                    fontStyle = FontStyle.Italic,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier
+                        .padding(start = MaterialTheme.spacing.medium)
+                        .padding(top = MaterialTheme.spacing.biggerMedium)
+                        .padding(bottom = MaterialTheme.spacing.medium)
+                )
 
-        }
-
-        LazyColumn(
-            modifier =Modifier
-                .fillMaxWidth()
-                .height(800.dp)
-        ){
-            items(newsList){news->
-                NewsItem(news)
             }
-        }
 
+            LazyColumn(
+                modifier =Modifier
+                    .fillMaxWidth()
+                    .height(800.dp)
+            ){
+                items(newsList){news->
+                    NewsItem(news)
+                }
+            }
+
+        }
     }
+
 
 
 }

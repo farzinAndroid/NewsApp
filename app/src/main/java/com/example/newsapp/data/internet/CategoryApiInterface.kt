@@ -6,21 +6,11 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface HomeApiInterface {
+interface CategoryApiInterface {
 
     @GET("top-headlines")
-    suspend fun getTopHeadlines(
-        @Query("sources") source:String,
+    suspend fun getNewsBasedOnCategory(
+        @Query("category") category:String,
         @Query("language") lang:String = "en"
     ) : Response<BaseResponseModel<List<TopNewsModel>>>
-
-    @GET("everything")
-    suspend fun getNewsBasedOnSource(
-        @Query("sources") source:String,
-        @Query("language") lang:String = "en"
-    ) : Response<BaseResponseModel<List<TopNewsModel>>>
-
-
-
-
 }

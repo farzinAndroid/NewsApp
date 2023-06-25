@@ -1,6 +1,5 @@
 package com.example.newsapp.ui.component
 
-import androidx.compose.foundation.DefaultMarqueeIterations
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
@@ -9,7 +8,6 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -75,7 +73,8 @@ fun NewsItem(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .weight(0.7f),
+                .weight(0.7f)
+                .padding(MaterialTheme.spacing.extraSmall),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
 

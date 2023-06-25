@@ -1,7 +1,6 @@
 package com.example.newsapp.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.Colors
 import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -21,7 +20,7 @@ val ColorScheme.bottomBar: Color
 
 val ColorScheme.selectedbottomBar: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Color(0xFFF83232) else Color(0xFFE90000)
+    get() = if (isSystemInDarkTheme()) Color(0xFF83000B) else Color(0xFFe51324)
 
 val ColorScheme.unselectedbottomBar: Color
     @Composable
@@ -33,7 +32,7 @@ val ColorScheme.hammenucolor: Color
 
 val ColorScheme.newstodayText: Color
     @Composable
-    get() = if (isSystemInDarkTheme()) Color(0xFFFFFFFF) else Color(0xFFE90000)
+    get() = if (isSystemInDarkTheme()) Color(0xFFFFFFFF) else Color(0xFFe51324)
 
 val ColorScheme.darktext: Color
     @Composable

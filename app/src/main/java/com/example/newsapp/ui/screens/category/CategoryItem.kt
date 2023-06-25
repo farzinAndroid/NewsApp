@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.screens.home
+package com.example.newsapp.ui.screens.category
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.MarqueeAnimationMode
@@ -8,15 +8,17 @@ import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Text
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -24,53 +26,68 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.newsapp.ui.theme.Typography
 import com.example.newsapp.ui.theme.darktext
+import com.example.newsapp.ui.theme.roundedShape
+import com.example.newsapp.ui.theme.selectedbottomBar
 import com.example.newsapp.ui.theme.spacing
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun SourceItem(
+fun CategoryItem(
     index: Int,
     selectedTabPosition: Int,
-    item: SourceModel,
+    item: CategoryModel,
     onClick: () -> Unit,
 ) {
 
-    val backGround = if (index == selectedTabPosition) {
-        Modifier.background(
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    Color.Transparent,
-                    Color.Transparent,
-                    Color.Transparent,
-                    item.color.copy(0.5f)
-                )
-            )
-        )
-    }else{
-        Modifier.background(Color.Transparent)
+    var boxColor  = Color.Transparent
+    var textColor  = MaterialTheme.colorScheme.darktext
+    var iconColor  = MaterialTheme.colorScheme.selectedbottomBar
+
+    if (selectedTabPosition == index){
+        boxColor = MaterialTheme.colorScheme.selectedbottomBar.copy(0.7f)
+        textColor = MaterialTheme.colorScheme.selectedbottomBar
+        iconColor = Color.White
     }
 
+
     Box(
-        modifier = backGround,
+        modifier = Modifier
+            .height(180.dp)
+            .clickable {
+                onClick()
+            }
+            .padding(horizontal = MaterialTheme.spacing.medium),
+        contentAlignment = Alignment.TopCenter
     ) {
 
         Column(
             modifier = Modifier
-                .height(180.dp)
-                .width(100.dp)
-                .padding(MaterialTheme.spacing.small)
-                .clickable {
-                    onClick()
-                },
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Box(
+                modifier = Modifier
+                    .clip(MaterialTheme.roundedShape.large)
+                    .background(boxColor)
+                    .size(90.dp),
+                contentAlignment = Alignment.Center
+            ) {
 
-            ImageWithBorder(image = item.painter, borderColor = item.color)
+                Icon(
+                    painter = item.painter,
+                    contentDescription = "",
+                    tint = iconColor,
+                    modifier = Modifier
+                        .size(50.dp)
+                )
+
+            }
+
 
             Text(
                 text = item.text,
-                style = Typography.titleLarge,
-                color = if (index == selectedTabPosition) item.color else MaterialTheme.colorScheme.darktext,
+                style = Typography.headlineSmall,
+                color = textColor,
                 fontWeight = FontWeight.SemiBold,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
@@ -86,5 +103,9 @@ fun SourceItem(
                 textAlign = TextAlign.Center
             )
         }
+
     }
+
+
+
 }

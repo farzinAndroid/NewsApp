@@ -4,7 +4,6 @@ import com.example.newsapp.data.model.BaseResponseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
-import java.lang.Exception
 
 abstract class BaseApiCall {
 

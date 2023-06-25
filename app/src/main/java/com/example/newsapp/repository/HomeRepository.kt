@@ -2,7 +2,6 @@ package com.example.newsapp.repository
 
 import com.example.newsapp.data.internet.BaseApiCall
 import com.example.newsapp.data.internet.HomeApiInterface
-import com.example.newsapp.data.internet.NetworkResult
 import javax.inject.Inject
 
 class HomeRepository @Inject constructor(private val api: HomeApiInterface) : BaseApiCall() {

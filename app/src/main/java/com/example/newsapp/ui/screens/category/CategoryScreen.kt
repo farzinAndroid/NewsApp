@@ -1,18 +1,31 @@
 package com.example.newsapp.ui.screens.category
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.newsapp.ui.component.AppHeader
-import java.util.Locale.Category
 
 @Composable
-fun CategoryScreen() {
+fun CategoryScreen(navController: NavController) {
 
-    Category()
+    Category(navController)
 
 }
 
 @Composable
-fun Category() {
-    AppHeader()
+fun Category(navController:NavController) {
+
+    LazyColumn(
+        modifier = Modifier
+            .padding(bottom = 60.dp)
+    ){
+
+        item { AppHeader() }
+        item { CategoryRow(navController) }
+
+    }
+
 }

@@ -12,4 +12,23 @@
     <string name="today_news">Today\'s News</string>
     <string name="dot_bullet">•</string>
     <string name="unknown">Unknown</string>
+    <string name="google">Google</string>
+    <string name="fox_news">Fox News</string>
+    <string name="cnn">Cnn</string>
+    <string name="bloomberg">Bloomberg</string>
+    <string name="a_p">Associated Press</string>
+    <string name="abc">ABC</string>
+    <string name="bbc_news">BBC News</string>
+    <string name="time">Time</string>
+
+    <string name="business">Business</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="general">General</string>
+    <string name="health">Health</string>
+    <string name="politics">Politics</string>
+    <string name="science">Science</string>
+    <string name="sport">Sport</string>
+    <string name="technology">Technology</string>
+    <string name="all_Your_interests...">All Your Interests in One Place</string>
+
 </resources>

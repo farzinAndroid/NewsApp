@@ -16,6 +16,7 @@ class HomeViewModel @Inject constructor(private val repo: HomeRepository) : View
 
     val topHeadline = MutableStateFlow<NetworkResult<List<TopNewsModel>>>(NetworkResult.Loading())
     val newsBasedOnSource = MutableStateFlow<NetworkResult<List<TopNewsModel>>>(NetworkResult.Loading())
+    val newsBasedOnCategory = MutableStateFlow<NetworkResult<List<TopNewsModel>>>(NetworkResult.Loading())
 
 
     suspend fun getTopNewsData(source: String) {

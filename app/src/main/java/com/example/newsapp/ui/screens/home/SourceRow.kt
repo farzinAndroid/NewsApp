@@ -1,20 +1,16 @@
 package com.example.newsapp.ui.screens.home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.TabPosition
-import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,15 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.newsapp.R
+import com.example.newsapp.ui.component.GlobalNewsAnimation
 import com.example.newsapp.ui.theme.Typography
-import com.example.newsapp.ui.theme.bottomBar
 import com.example.newsapp.ui.theme.darktext
 import com.example.newsapp.ui.theme.spacing
 
@@ -44,55 +37,54 @@ fun SourceRow(
     navController: NavController,
 ) {
 
-    var selectedItem = remember { mutableStateOf<SourceModel?>(null) }
 
 
     val sourceList = listOf(
         SourceModel(
             painter = painterResource(R.drawable.bbc),
-            text = "BBC News",
+            text = stringResource(R.string.bbc_news),
             Color(0xFFFC2727),
             id = 1
         ),
         SourceModel(
             painter = painterResource(R.drawable.abc),
-            text = "ABC",
+            text =stringResource(R.string.abc),
             Color(0xFF000000),
             id = 2
         ),
         SourceModel(
             painter = painterResource(R.drawable.time),
-            text = "Time",
+            text = stringResource(R.string.time),
             Color(0xFFFF4800),
             id = 3
         ),
         SourceModel(
             painter = painterResource(R.drawable.asociate_press),
-            text = "Associated Press",
+            text = stringResource(R.string.a_p),
             Color(0xFF343535),
             id = 4
         ),
         SourceModel(
             painter = painterResource(R.drawable.bloomberg),
-            text = "Bloomberg",
+            text = stringResource(R.string.bloomberg),
             Color(0xFFFFA02E),
             id = 5
         ),
         SourceModel(
             painter = painterResource(R.drawable.cnn),
-            text = "Cnn",
+            text = stringResource(R.string.cnn),
             Color(0xFFB9001D),
             id = 6
         ),
         SourceModel(
             painter = painterResource(R.drawable.fox),
-            text = "Fox News",
+            text = stringResource(R.string.fox_news),
             Color(0xFF002D9C),
             id = 7
         ),
         SourceModel(
             painter = painterResource(R.drawable.google),
-            text = "Google",
+            text = stringResource(R.string.google),
             Color(0xFF068300),
             id = 8
         )
@@ -100,7 +92,7 @@ fun SourceRow(
 
 
     var selectedTabIndex by remember {
-        mutableStateOf(0)
+        mutableStateOf(-1)
     }
 
 
@@ -114,8 +106,7 @@ fun SourceRow(
             text = stringResource(R.string.quick_reads),
             style = Typography.displayLarge,
             color = MaterialTheme.colorScheme.darktext,
-            fontStyle = FontStyle.Italic,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Black,
             modifier = Modifier
                 .padding(start = MaterialTheme.spacing.medium)
                 .padding(top = MaterialTheme.spacing.medium)
@@ -126,7 +117,7 @@ fun SourceRow(
         Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.Start) {
             ScrollableTabRow(
                 selectedTabIndex = selectedTabIndex,
-                containerColor = MaterialTheme.colorScheme.bottomBar,
+                containerColor = Color.Transparent,
                 divider = {
                     Divider(
                         color = Color.Transparent
@@ -191,78 +182,13 @@ fun SourceRow(
                 }
 
                 7 -> {
-                    /*when(selectedItem.value){
-                        is SourceModel ->{
-                            val selectedSource = selectedItem.value as SourceModel
-
-            //                loading = true
-
-                            when(selectedSource.id){
-
-
-
-                                1 ->{
-                                   TopNewsSection(source = "bbc-news")
-                                }
-
-                                2 ->{
-                                    TopNewsSection(source = "abc-news")
-                                }
-
-                                3 ->{
-                                    TopNewsSection(source = "time")
-                                }
-
-                                4 ->{
-                                    TopNewsSection(source = "associated-press")
-                                }
-
-                                5 ->{
-                                    TopNewsSection(source = "bloomberg")
-                                }
-
-                                6 ->{
-                                    TopNewsSection(source = "cnn")
-                                }
-
-                                7 ->{
-                                    TopNewsSection(source = "fox-news")
-                                }
-
-                                8 ->{
-                                    TopNewsSection(source = "google-news")
-                                }
-
-
-
-                            }
-            //                loading = false
-
-                        }
-                    }*/
-                    Text("google-news")
+                    TopNewsSection("google-news")
+                }
+                else->{
+                    GlobalNewsAnimation()
                 }
             }
         }
-
-
-        /*LazyRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(120.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            itemsIndexed(sourceList) { index, source ->
-                SourceItem(source){
-                    selectedItem.value = source
-                }
-            }
-        }*/
-
-
-
-
     }
 
 

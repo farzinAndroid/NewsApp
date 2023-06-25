@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.compose.rememberNavController
 import com.example.newsapp.navigation.BottomBar
 import com.example.newsapp.navigation.NavGraph
+import com.example.newsapp.navigation.Screens
 import com.example.newsapp.ui.component.ChangeStatusBarColor
 import com.example.newsapp.ui.theme.NewsAppTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,11 @@ class MainActivity : ComponentActivity() {
                         bottomBar = {
                             BottomBar(navController, onItemClick = {
                                 navController.navigate(it.route){
-
+                                    restoreState = true
+                                    launchSingleTop = true
+                                    popUpTo(Screens.HomeScreen.route) { saveState = true }
+                                    restoreState = true
+                                    launchSingleTop = true
                                 }
                             })
                         },
