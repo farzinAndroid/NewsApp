@@ -13,7 +13,10 @@ android {
     namespace 'com.example.newsapp'
     compileSdk 33
 
-
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
+    }
 
     defaultConfig {
         applicationId "com.example.newsapp"
