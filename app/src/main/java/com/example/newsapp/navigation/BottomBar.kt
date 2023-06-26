@@ -88,11 +88,11 @@ fun BottomBar(
             modifier = Modifier
                 .height(64.dp)
                 .padding(horizontal = MaterialTheme.spacing.small),
-            ballAnimation = Teleport(tween(500)),
+            ballAnimation = Parabolic(tween(500)),
             cornerRadius = shapeCornerRadius(cornerRadius = 34.dp),
             ballColor = if (isSystemInDarkTheme()) Color.White else MaterialTheme.colorScheme.selectedbottomBar,
             barColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.bottomBar else MaterialTheme.colorScheme.selectedbottomBar.copy(
-                0.7f
+                0.5f
             ),
             indentAnimation = Height(tween(300))
         ) {
