@@ -154,35 +154,35 @@ fun SourceRow(
 
             when (selectedTabIndex) {
                 0 -> {
-                    TopNewsSection("bbc-news")
+                    TopNewsSection("bbc-news", navController = navController)
                 }
 
                 1 -> {
-                    TopNewsSection("abc-news")
+                    TopNewsSection("abc-news", navController = navController)
                 }
 
                 2 -> {
-                    TopNewsSection("time")
+                    TopNewsSection("time", navController = navController)
                 }
 
                 3 -> {
-                    TopNewsSection("associated-press")
+                    TopNewsSection("associated-press", navController = navController)
                 }
 
                 4 -> {
-                    TopNewsSection("bloomberg")
+                    TopNewsSection("bloomberg", navController = navController)
                 }
 
                 5 -> {
-                    TopNewsSection("cnn")
+                    TopNewsSection("cnn", navController = navController)
                 }
 
                 6 -> {
-                    TopNewsSection("fox-news")
+                    TopNewsSection("fox-news", navController = navController)
                 }
 
                 7 -> {
-                    TopNewsSection("google-news")
+                    TopNewsSection("google-news", navController = navController)
                 }
                 else->{
                     GlobalNewsAnimation()

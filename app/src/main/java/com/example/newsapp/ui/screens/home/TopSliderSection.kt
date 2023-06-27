@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.collectIsDraggedAsState
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -109,6 +110,12 @@ fun TopSliderSection(
 
             var imageUrl by remember { mutableStateOf("") }
 
+            val place_holder = if (isSystemInDarkTheme()){
+                painterResource(R.drawable.place_holder_dark)
+            }else{
+                painterResource(R.drawable.place_holder_light)
+            }
+
             HorizontalPager(
                 count = topNewsList.size,
                 state = pagerState,
@@ -126,7 +133,7 @@ fun TopSliderSection(
                     contentAlignment = Alignment.BottomCenter
                 ) {
                     Image(
-                        painter = if (imageUrl.isNullOrEmpty()) painterResource(R.drawable.cnn) else rememberAsyncImagePainter(
+                        painter = if (imageUrl.isNullOrEmpty()) place_holder else rememberAsyncImagePainter(
                             imageUrl
                         ),
                         contentDescription = "",
@@ -134,7 +141,7 @@ fun TopSliderSection(
                             .padding(LocalSpacing.current.small)
                             .clip(MaterialTheme.roundedShape.medium)
                             .fillMaxSize()
-                            .clickable {  },
+                            .clickable { },
                         contentScale = ContentScale.FillBounds
                     )
 
@@ -162,7 +169,7 @@ fun TopSliderSection(
                     ) {
 
                         Text(
-                            text = if (imageUrl.isNullOrEmpty()) "" else topNewsList[index].title,
+                            text =topNewsList[index].title,
                             style = Typography.displayLarge,
                             fontWeight = FontWeight.Bold,
                             color = Color.White,
@@ -192,7 +199,7 @@ fun TopSliderSection(
                     .filter { !isDraggedState }
                     .collectLatest { isDragged ->
                         while (true) {
-                            delay(6000)
+                            delay(10000)
                             var newPosition = pagerState.currentPage + 1
                             if (newPosition > topNewsList.size - 1) newPosition = 0
                             pagerState.animateScrollToPage(newPosition)

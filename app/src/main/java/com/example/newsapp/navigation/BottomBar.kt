@@ -83,7 +83,72 @@ fun BottomBar(
 
     if (showBottomBar) {
 
-        AnimatedNavigationBar(
+        BottomAppBar(
+            modifier = Modifier
+                .height(64.dp)
+                .padding(horizontal = MaterialTheme.spacing.small)
+                .clip(MaterialTheme.roundedShape.large),
+            containerColor = if (isSystemInDarkTheme()) MaterialTheme.colorScheme.bottomBar else MaterialTheme.colorScheme.selectedbottomBar.copy(
+                0.5f
+            ),
+        ) {
+
+            bottomNavList.forEachIndexed { index, item ->
+                val selected = item.route == backStackEntry.value?.destination?.route
+                BottomNavigationItem(
+                    selected =selected,
+                    onClick = {  },
+                    icon = {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .padding(vertical = MaterialTheme.spacing.small)
+                                .noRippleClickable {
+                                    onItemClick(item)
+                                }
+                        ) {
+
+                            Icon(
+                                painter = item.icon,
+                                contentDescription = item.name,
+                                modifier = Modifier
+                                    .size(24.dp),
+                                tint = if (selected) Color.White else Color.LightGray
+
+                            )
+
+                            Text(
+                                text = item.name,
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = if (selected) Color.White else Color.LightGray,
+                                modifier = Modifier
+//                                    .padding(top = MaterialTheme.spacing.extraSmall)
+                            )
+
+                        }
+                    }
+                )
+            }
+
+        }
+
+    }
+
+
+}
+
+fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
+    clickable(
+        indication = null,
+        interactionSource = remember { MutableInteractionSource() }
+    ) {
+        onClick()
+    }
+}
+
+
+/*AnimatedNavigationBar(
             selectedIndex = selectedIndex,
             modifier = Modifier
                 .height(64.dp)
@@ -131,17 +196,4 @@ fun BottomBar(
 
 
             }
-        }
-    }
-
-
-}
-
-fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
-    clickable(
-        indication = null,
-        interactionSource = remember { MutableInteractionSource() }
-    ) {
-        onClick()
-    }
-}
+        }*/

@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
@@ -38,6 +39,7 @@ import com.google.accompanist.pager.rememberPagerState
 fun TopNewsSection(
     source:String,
     homeViewModel: HomeViewModel = hiltViewModel(),
+    navController:NavController
 ) {
 
     LaunchedEffect(true){
@@ -117,7 +119,7 @@ fun TopNewsSection(
             TopSliderSection()
 
 
-            TodaysNewsSection()
+            TodaysNewsSection(navController = navController)
 
         }
     }

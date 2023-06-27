@@ -34,13 +34,13 @@ class MainActivity : ComponentActivity() {
                     Scaffold(
                         bottomBar = {
                             BottomBar(navController, onItemClick = {
-                                navController.navigate(it.route){
+                                navController.navigate(it.route)/*{
                                     restoreState = true
                                     launchSingleTop = true
                                     popUpTo(Screens.HomeScreen.route) { saveState = true }
                                     restoreState = true
                                     launchSingleTop = true
-                                }
+                                }*/
                             })
                         },
                     ) {

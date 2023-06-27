@@ -25,9 +25,11 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
+import com.example.newsapp.navigation.Screens
 import com.example.newsapp.ui.component.NewsItem
 import com.example.newsapp.ui.component.PreLoadAnimation
 import com.example.newsapp.ui.theme.Typography
@@ -38,6 +40,7 @@ import com.example.newsapp.viewmodel.HomeViewModel
 @Composable
 fun TodaysNewsSection(
     homeViewModel: HomeViewModel = hiltViewModel(),
+    navController: NavController
 ) {
 
     var newsList by remember {
@@ -106,7 +109,9 @@ fun TodaysNewsSection(
                     .height(800.dp)
             ){
                 items(newsList){news->
-                    NewsItem(news)
+                    NewsItem(news){
+                        navController.navigate(Screens.WebPageScreen.route + "?url=${news.url}")
+                    }
                 }
             }
 

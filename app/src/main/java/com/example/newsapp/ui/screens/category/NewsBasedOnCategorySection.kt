@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
+import com.example.newsapp.navigation.Screens
 import com.example.newsapp.ui.component.NewsItem
 import com.example.newsapp.ui.component.PreLoadAnimation
 import com.example.newsapp.viewmodel.CategoryViewModel
@@ -71,7 +72,9 @@ fun NewsBasedOnCategorySection(
                 .height(800.dp),
         ) {
             items(topNewsCategoryList) { news ->
-                NewsItem(news)
+                NewsItem(news){
+                    navController.navigate(Screens.WebPageScreen.route + "?url=${news.url}")
+                }
             }
         }
     }

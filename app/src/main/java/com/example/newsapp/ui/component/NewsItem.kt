@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.MarqueeAnimationMode
 import androidx.compose.foundation.MarqueeSpacing
 import androidx.compose.foundation.basicMarquee
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,12 +37,20 @@ import com.example.newsapp.ui.theme.Typography
 import com.example.newsapp.ui.theme.darktext
 import com.example.newsapp.ui.theme.roundedShape
 import com.example.newsapp.ui.theme.spacing
+import com.example.newsapp.utils.DateChanger
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NewsItem(
     news: TopNewsModel,
+    onClick: () -> Unit,
 ) {
+
+    val place_holder = if (isSystemInDarkTheme()) {
+        painterResource(R.drawable.place_holder_dark)
+    } else {
+        painterResource(R.drawable.place_holder_light)
+    }
 
 
     Row(
@@ -48,7 +58,10 @@ fun NewsItem(
             .padding(vertical = MaterialTheme.spacing.small)
             .padding(start = MaterialTheme.spacing.small)
             .fillMaxWidth()
-            .height(120.dp),
+            .height(120.dp)
+            .clickable {
+                onClick()
+            },
         verticalAlignment = Alignment.CenterVertically,
     ) {
 
@@ -58,7 +71,7 @@ fun NewsItem(
         ) {
 
             Image(
-                painter = if (news.urlToImage.isNullOrEmpty()) painterResource(R.drawable.cnn) else rememberAsyncImagePainter(
+                painter = if (news.urlToImage.isNullOrEmpty()) place_holder else rememberAsyncImagePainter(
                     news.urlToImage
                 ),
                 contentDescription = "",
@@ -137,15 +150,17 @@ fun NewsItem(
                     )
                 }
 
-                Text(
-                    text = news.publishedAt,
-                    style = Typography.headlineSmall,
-                    color = Color.Gray,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .padding(end = MaterialTheme.spacing.small)
-                )
+                DateChanger.convertDateTime(news.publishedAt)?.let {
+                    Text(
+                        text = it,
+                        style = Typography.headlineSmall,
+                        color = Color.Gray,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier
+                            .padding(end = MaterialTheme.spacing.small)
+                    )
+                }
 
             }
 

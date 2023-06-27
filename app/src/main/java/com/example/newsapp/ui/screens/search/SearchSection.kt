@@ -34,7 +34,9 @@ import androidx.navigation.NavController
 import com.example.newsapp.R
 import com.example.newsapp.data.internet.NetworkResult
 import com.example.newsapp.data.model.home.TopNewsModel
+import com.example.newsapp.navigation.Screens
 import com.example.newsapp.ui.component.NewsItem
+import com.example.newsapp.ui.component.PreLoadAnimation
 import com.example.newsapp.ui.theme.Typography
 import com.example.newsapp.ui.theme.darktext
 import com.example.newsapp.ui.theme.roundedShape
@@ -55,9 +57,6 @@ fun SearchSection(
         mutableStateOf("")
     }
 
-    /*LaunchedEffect(true){
-        searchViewModel.getNewsBySearch(newsText)
-    }*/
 
     var searchNewsList by remember {
         mutableStateOf<List<TopNewsModel>>(emptyList())
@@ -67,12 +66,8 @@ fun SearchSection(
         mutableStateOf(false)
     }
 
-    var state by remember(newsText) {
-        mutableStateOf(newsText)
-    }
-
     var searchJob by remember { mutableStateOf<Job?>(null) }
-    var courotinScope = rememberCoroutineScope()
+    val courotinScope = rememberCoroutineScope()
 
 
     val newsBySearchResult by searchViewModel.newsBySearch.collectAsState()
@@ -94,7 +89,7 @@ fun SearchSection(
     }
 
 
-    Column() {
+    Column {
 
         BasicTextField(
             textStyle = TextStyle(
@@ -106,7 +101,6 @@ fun SearchSection(
             value = newsText,
             onValueChange = {
                 newsText = it
-                state = it
                 searchJob?.cancel()
                 searchJob = courotinScope.launch {
                     delay(1000) // Wait for 500ms before calling the search API
@@ -159,18 +153,25 @@ fun SearchSection(
         )
 
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(800.dp)
-                .padding(bottom = 64.dp)
-        ) {
+        if (loading && newsText.isNotBlank()){
+            PreLoadAnimation()
+        }else{
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(800.dp)
+                    .padding(bottom = 64.dp)
+            ) {
 
-            items(searchNewsList) { news ->
-                NewsItem(news = news)
+                items(searchNewsList) { news ->
+                    NewsItem(news = news){
+                        navController.navigate(Screens.WebPageScreen.route + "?url=${news.url}")
+                    }
+                }
+
             }
-
         }
+
 
     }
 
